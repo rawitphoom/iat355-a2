@@ -1,7 +1,9 @@
 :root {
     --bg: #121212;
-    --fg: #e9e9e9; /* foreground text color */
-    --muted: #a6a6a6; /* secondary color */
+    --fg: #e9e9e9;
+    /* foreground text color */
+    --muted: #a6a6a6;
+    /* secondary color */
     --gap: clamp(12px, 2.2vw, 28px);
 }
 
@@ -63,14 +65,24 @@ body {
     background: rgba(255, 255, 255, .04);
 }
 
+/* Hero section */
+.hero {
+    min-height: 120vh;
+    /* full screen */
+    display: grid;
+    align-content: start;
+    padding-bottom: calc(28vh + 2*var(--gap));
+    /* leave space for giant name */
+}
+
 /* main grid */
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px; 
-  padding: 60px 20px 200px;
-  max-width: 1200px;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 60px 20px 200px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 
@@ -98,35 +110,107 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    line-height: 1.8rem;
 }
 
 .skills li {
     color: var(--muted);
-    padding: .14rem 0;
 }
 
-.skills a{
+.skills a {
     color: var(--muted);
     text-decoration: underline;
+    transition: all .5s ease;
+}
+
+.skills a:hover {
+    color: var(--accent);
 }
 
 /* giant name */
+/* stays pinned at bottom */
 .name {
     position: fixed;
     left: var(--gap);
     right: var(--gap);
     bottom: 0;
     pointer-events: none;
+    z-index: 1;
+    /* below projects */
+    will-change: opacity, transform;
 }
 
+
+/* =================================== Projects grid =================================== */
+.projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-bottom: 14rem;
+}
+
+.project .tile {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    /* keep a nice visual height even before image loads */
+    aspect-ratio: 16/9;
+    /* change to 4/3 if you prefer */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+    transition: transform .6s ease, box-shadow .6s ease;
+}
+
+.project img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.001);
+    transition: transform .9s ease, opacity .9s ease, filter .9s ease;
+}
+
+/* hover treatment */
+.project .tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, .35);
+}
+
+.project .tile:hover img {
+    transform: scale(1.04);
+    filter: brightness(0.98) contrast(1.02);
+}
+
+.cap {
+    margin-top: 2rem;
+    text-align: left;
+    color: var(--fg);
+}
+
+.cap .title {
+    display: block;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+}
+
+.cap .year {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--muted);
+}
+
+/* ======================================================================================== */
 .name span {
     display: block;
     font-weight: 400;
     line-height: 0.86;
-    letter-spacing: -.02em;
+    letter-spacing: -0.02em;
     color: var(--fg);
-    opacity: .95;
-    font-size: clamp(64px, 8.8vw, 220px);
+    opacity: 0.95;
+    font-size: clamp(64px, 8.5vw, 220px);
     /* responsive giant text */
     white-space: nowrap;
     overflow: hidden;
@@ -146,6 +230,11 @@ body {
     .name span {
         font-size: clamp(64px, 5vw, 220px);
     }
+
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 @media (max-width:580px) {
