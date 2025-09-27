@@ -245,4 +245,62 @@ body {
     .name span {
         font-size: clamp(45px, 8vw, 220px);
     }
+
+
+    /* ───────── Breakpoints ───────── */
+    @media (max-width: 1100px) {
+        .grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .skills {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .hero {
+            min-height: 100vh;
+            padding-bottom: calc(22vh + 2*var(--gap));
+        }
+
+        .grid {
+            grid-template-columns: 1fr;
+            padding-bottom: 140px;
+        }
+
+        .projects {
+            grid-template-columns: 1fr;
+        }
+
+        .name span {
+            font-size: clamp(58px, 7vw, 160px);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .skills {
+            grid-template-columns: 1fr;
+        }
+
+        .projects {
+            gap: clamp(14px, 4vw, 22px);
+            padding-bottom: 10rem;
+        }
+
+        .name span {
+            font-size: clamp(45px, 8vw, 140px);
+        }
+    }
+
+    /* extra-narrow phones */
+    @media (max-width: 380px) {
+        .nav a {
+            padding: .35rem .7rem;
+        }
+
+        .name span {
+            font-size: clamp(38px, 9.5vw, 120px);
+        }
+    }
 }
