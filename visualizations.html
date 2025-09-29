@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizations</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="vis.js" defer></script>
+</head>
+<body>
+  <h1>My Visualizations</h1>
+
+  <!-- First visualization: plain SVG -->
+  <h2>SVG Bar Chart</h2>
+  <svg width="400" height="200">
+    <!-- Bars -->
+    <rect x="50" y="50" width="40" height="100" fill="skyblue" />
+    <rect x="120" y="30" width="40" height="120" fill="orange" />
+    <rect x="190" y="70" width="40" height="80" fill="lightgreen" />
+    <!-- Labels -->
+    <text x="65" y="170" fill="white">A</text>
+    <text x="135" y="170" fill="white">B</text>
+    <text x="205" y="170" fill="white">C</text>
+  </svg>
+
+  <!-- Second visualization: drawn with JS -->
+  <h2>Creative SVG (with JS)</h2>
+  <svg id="creative" width="400" height="200"></svg>
+
+  <p><a href="index.html">Back to Home</a></p>
+</body>
+</html>

@@ -35,3 +35,6 @@ How to View
 1. Open `index.html` in your browser to view the homepage  
 2. Open `visualizations.html` to see the visualizations
 3. Or visit the deployed site on GitHub Pages if published
+
+Reference
+- Portfolio idea from https://www.bychristinakosik.com/
