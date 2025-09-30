@@ -1,32 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Visualizations</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script src="vis.js" defer></script>
 </head>
+
 <body>
-  <h1>My Visualizations</h1>
+  <!-- Nav bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand">Rawitphoom Kiatthitinan</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="visualizations.html">Visualizations</a>
+      <a href="mailto:rka70@sfu.ca">Contact</a>
+      <a href="https://github.com/rawitphoom" target="_blank">GitHub</a>
+    </div>
+  </nav>
+  <div class="viz-page">
+    <h1>My Visualizations</h1>
 
-  <!-- First visualization: plain SVG -->
-  <h2>SVG Bar Chart</h2>
-  <svg width="400" height="200">
-    <!-- Bars -->
-    <rect x="50" y="50" width="40" height="100" fill="skyblue" />
-    <rect x="120" y="30" width="40" height="120" fill="orange" />
-    <rect x="190" y="70" width="40" height="80" fill="lightgreen" />
-    <!-- Labels -->
-    <text x="65" y="170" fill="white">A</text>
-    <text x="135" y="170" fill="white">B</text>
-    <text x="205" y="170" fill="white">C</text>
-  </svg>
+    <!-- 1) Animated SVG Bar Chart -->
+    <h2>SVG Bar Chart</h2>
+    <div class="svg-card">
+      <svg id="barChart" class="svg-wrap" viewBox="0 0 460 260" aria-label="Bar chart">
+        <!-- Axes -->
+        <g stroke="rgba(255,255,255,.25)" stroke-width="1">
+          <line x1="40" y1="210" x2="430" y2="210" />
+          <line x1="40" y1="210" x2="40" y2="30" />
+        </g>
 
-  <!-- Second visualization: drawn with JS -->
-  <h2>Creative SVG (with JS)</h2>
-  <svg id="creative" width="400" height="200"></svg>
+        <!-- Grid lines -->
+        <g stroke="rgba(255,255,255,.08)" stroke-width="1">
+          <line x1="40" y1="170" x2="430" y2="170" />
+          <line x1="40" y1="130" x2="430" y2="130" />
+          <line x1="40" y1="90" x2="430" y2="90" />
+          <line x1="40" y1="50" x2="430" y2="50" />
+        </g>
 
-  <p><a href="index.html">Back to Home</a></p>
+        <!-- Bars (height animated by JS). data-h is the target height -->
+        <g id="bars">
+          <rect class="bar" x="80" y="210" width="48" height="0" rx="6" fill="#7cc7ff" data-label="A" data-h="120">
+          </rect>
+          <rect class="bar" x="160" y="210" width="48" height="0" rx="6" fill="#ffa24d" data-label="B" data-h="160">
+          </rect>
+          <rect class="bar" x="240" y="210" width="48" height="0" rx="6" fill="#82e39b" data-label="C" data-h="100">
+          </rect>
+          <rect class="bar" x="320" y="210" width="48" height="0" rx="6" fill="#c9a8ff" data-label="D" data-h="140">
+          </rect>
+        </g>
+
+        <!-- X labels -->
+        <g fill="#e9e9e9" font-size="12">
+          <text x="104" y="230" text-anchor="middle">A</text>
+          <text x="184" y="230" text-anchor="middle">B</text>
+          <text x="264" y="230" text-anchor="middle">C</text>
+          <text x="344" y="230" text-anchor="middle">D</text>
+        </g>
+      </svg>
+
+      <div class="legend">
+        <span class="chip" style="background:#7cc7ff"></span> A
+        <span class="chip" style="background:#ffa24d"></span> B
+        <span class="chip" style="background:#82e39b"></span> C
+        <span class="chip" style="background:#c9a8ff"></span> D
+      </div>
+    </div>
+
+    <!-- 2) Creative Animated SVG -->
+    <h2>Creative SVG (with JS)</h2>
+    <div class="svg-card">
+      <svg id="creative" class="svg-wrap" viewBox="0 0 600 260" aria-label="Creative animated SVG"></svg>
+    </div>
 </body>
+
 </html>
