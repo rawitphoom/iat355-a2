@@ -31,4 +31,24 @@ window.addEventListener('resize', () => {
 // initialize state on load
 onScroll();
 
+// === Top-bar clock ===
+const clockEl = document.getElementById('clock');
+
+function fmtTime(date){
+  const h24 = date.getHours();
+  const h12 = h24 % 12 || 12;
+  const mm  = String(date.getMinutes()).padStart(2, '0');
+  const am  = h24 >= 12 ? 'PM' : 'AM';
+  return `${h12}:${mm} ${am}`;
+}
+
+function updateClock(){
+  if (clockEl) clockEl.textContent = fmtTime(new Date());
+}
+
+updateClock();                // set immediately
+setInterval(updateClock, 30_000); // refresh every 30s
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) updateClock();
+});
 

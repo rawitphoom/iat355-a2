@@ -30,7 +30,7 @@ body {
     inset: 0 0 auto 0;
     display: flex;
     justify-content: space-between;
-    padding: 1.5vw 1.5vw 1.5vw 1.5vw;
+    padding: 3vw 1.5vw 1.5vw 1.5vw;
     z-index: 10;
 }
 
@@ -39,10 +39,19 @@ body {
     pointer-events: auto
 }
 
+/* Clock */
 .clock {
     font-weight: 500;
-    letter-spacing: 0.2px;
-    opacity: 0.9;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    /* even width digits = no jitter */
+    opacity: .9;
+    color: var(--fg);
+}
+
+.clock::before {
+    opacity: 0.85;
+    margin-right: 0.25rem;
 }
 
 .nav a {
@@ -65,6 +74,10 @@ body {
     min-height: 120vh;
 }
 
+.hero .intro p {
+    margin: 0;
+}
+
 /* main grid */
 .grid {
     display: grid;
@@ -77,7 +90,7 @@ body {
 
 
 .intro p {
-    max-width: 38ch;
+    max-width: 39ch;
     font-size: 1rem;
     color: var(--accent);
 }
@@ -210,7 +223,25 @@ body {
 /* ======================================================================================== */
 
 /* small screens */
+@media (max-width: 1400px) {
+    .hero .intro p {
+        margin-top: 2rem;
+    }
+
+    .skills {
+        margin-top: 2rem;
+    }
+
+    .clock {
+        padding: 0vw 0vw 0vw 2vw;
+    }
+}
+
 @media (max-width: 1100px) {
+
+    .hero .intro p {
+        margin-top: 2rem;
+    }
 
     /* top bar */
     .topbar {
@@ -223,6 +254,7 @@ body {
 
     .skills {
         grid-template-columns: 1fr 1fr;
+        margin-top: 2rem;
     }
 
     .name span {
@@ -233,12 +265,17 @@ body {
 }
 
 @media (max-width:900px) {
+    .hero .intro p {
+        margin-top: 0.5rem;
+    }
+
     .grid {
         grid-template-columns: 1fr;
     }
 
     .skills {
         grid-template-columns: 1fr 1fr;
+        margin-top: 0.5rem;
     }
 
     .projects {
