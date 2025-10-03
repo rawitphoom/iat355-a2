@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAT355 - Assignment 3 (VegaLite)</title>
+
+    <!-- Vega & VegaLite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script src="a3.js" defer></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: white;
+            margin: 2rem;
+        }
+
+        .chart {
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Assignment 3 - VegaLite Visualizations</h1>
+
+    <!-- Chart placeholder -->
+    <div id="vis"></div>
+
+    <!-- Where charts will be rendered -->
+    <!-- Chart 1 -->
+    <h2 style="color:#fff; margin:2rem 0 .6rem">
+        Chart 1 - Simple Inline Bar Chart
+    </h2>
+    <div id="chart1" class="chart"></div>
+    <p style="color:#cfcfcf; max-width:70ch">
+        A small test chart created directly in the JavaScript file using inline values.
+        It demonstrates how VegaLite renders categorical data into a bar chart (categories A, B, C with amounts).
+    </p>
+    <!-- Chart 2 -->
+    <h2 style="color:#fff; margin:2rem 0 .6rem">
+        Chart 2 - Global Sales by Genre
+    </h2>
+    <div id="chart2" class="chart"></div>
+    <p style="color:#cfcfcf; max-width:70ch">
+        This chart uses <code>videogames_wide.csv</code> to show total global sales grouped by game genre.
+        Bars are sorted by total sales, highlighting how Action and Sports genres dominate the market.
+    </p>
+
+
+    <!-- Chart 3 -->
+    <h2 style="color:#fff; margin:2rem 0 .6rem">
+        Chart 3 - Regional Sales Trends Over Time
+    </h2>
+    <div id="chart3" class="chart"></div>
+    <p style="color:#cfcfcf; max-width:70ch">
+        A stacked area chart using <code>videogames_long.csv</code>, showing how sales evolved from 1980–2020.
+        Each region’s contribution is stacked to reveal market trends, with peaks around 2007–2009
+        and a noticeable decline after 2010.
+    </p>
+
+    <!-- Chart 4 -->
+    <h2 style="color:#fff;margin:2rem 0 .5rem;">Chart 4 - Top 10 Publishers by Global Sales</h2>
+    <div id="chart4" class="chart"></div>
+
+    <p style="color:#cfcfcf;max-width:70ch;line-height:1.6;">
+        Horizontal bars make it easy to compare publisher totals. Aggregating Global_Sales
+        and showing only the top 10 highlights who dominates the market overall.
+    </p>
+
+    <!-- Chart 5 -->
+    <h2 style="color:#fff; margin:2rem 0 .6rem">Chart 5 - Regional Sales Intensity by Year</h2>
+    <div id="chart5" class="chart"></div>
+    <p style="color:#cfcfcf; max-width:70ch">
+        A heatmap shows where sales were strongest over time across regions. Darker cells indicate higher total sales
+        (sum of <em>sales_amount</em>) in that year/region.
+    </p>
+
+    <!-- Chart 6 -->
+    <h2 style="color:#fff; margin:2rem 0 .6rem">
+        Chart 6 - NA vs EU Sales (size = Global Sales)
+    </h2>
+    <div id="chart6" class="chart"></div>
+    <p style="color:#cfcfcf; max-width:70ch">
+        Each dot is a game (2000–2020). The x-axis shows sales in North America, the y-axis shows sales in Europe.
+        Dot size encodes global sales, and color indicates genre. Look for clusters and outliers to see which genres
+        and titles perform strongly in both regions.
+    </p>
+
+
+</body>
+
+</html>
