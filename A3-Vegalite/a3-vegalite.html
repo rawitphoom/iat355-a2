@@ -10,88 +10,62 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <!-- JS + CSS -->
+    <link rel="stylesheet" href="a3-style.css">
     <script src="a3.js" defer></script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #121212;
-            color: white;
-            margin: 2rem;
-        }
-
-        .chart {
-            margin: 2rem 0;
-        }
-    </style>
 </head>
+
 
 <body>
     <h1>Assignment 3 - VegaLite Visualizations</h1>
 
-    <!-- Chart placeholder -->
-    <div id="vis"></div>
 
-    <!-- Where charts will be rendered -->
-    <!-- Chart 1 -->
-    <h2 style="color:#fff; margin:2rem 0 .6rem">
-        Chart 1 - Simple Inline Bar Chart
+    <!-- ===================== Visual #1 ===================== -->
+    <h2>
+        Chart A – Global Sales by <em>Genre &amp; Platform</em>
     </h2>
-    <div id="chart1" class="chart"></div>
-    <p style="color:#cfcfcf; max-width:70ch">
-        A small test chart created directly in the JavaScript file using inline values.
-        It demonstrates how VegaLite renders categorical data into a bar chart (categories A, B, C with amounts).
+    <div id="chartA" class="chart"></div>
+    <p>
+        Stacked bars show how platforms contribute to each genre’s global sales.
+        Action and Sports dominate overall. Nintendo (Wii/DS) and Sony’s
+        PlayStation lines carry large shares, while PC is steady across several genres.
     </p>
-    <!-- Chart 2 -->
-    <h2 style="color:#fff; margin:2rem 0 .6rem">
-        Chart 2 - Global Sales by Genre
+
+    <!-- ===================== Visual #2 ===================== -->
+    <h2>
+        Chart B – Sales Over Time by <em>Platform &amp; Genre</em>
     </h2>
-    <div id="chart2" class="chart"></div>
-    <p style="color:#cfcfcf; max-width:70ch">
-        This chart uses <code>videogames_wide.csv</code> to show total global sales grouped by game genre.
-        Bars are sorted by total sales, highlighting how Action and Sports genres dominate the market.
+    <div id="chartB" class="chart"></div>
+    <p>
+        Faceted line charts (2000–2016) show platform waves across genres—PS2/PS3
+        surges in Action/Role-Playing, a Wii spike around 2008 for family-friendly
+        genres, and the broad post-2010 decline.
     </p>
 
-
-    <!-- Chart 3 -->
-    <h2 style="color:#fff; margin:2rem 0 .6rem">
-        Chart 3 - Regional Sales Trends Over Time
+    <!-- ===================== Visual #3 ===================== -->
+    <h2>
+        Chart C – <em>Regional Sales</em> vs <em>Platform</em> (grouped bars)
     </h2>
-    <div id="chart3" class="chart"></div>
-    <p style="color:#cfcfcf; max-width:70ch">
-        A stacked area chart using <code>videogames_long.csv</code>, showing how sales evolved from 1980–2020.
-        Each region’s contribution is stacked to reveal market trends, with peaks around 2007–2009
-        and a noticeable decline after 2010.
+    <div id="chartC" class="chart"></div>
+    <p>
+        Grouped bars compare NA/EU/JP/Other by platform. NA and EU lead for most
+        platforms, while JP skews toward Nintendo/PlayStation compared to Xbox.
     </p>
 
-    <!-- Chart 4 -->
-    <h2 style="color:#fff;margin:2rem 0 .5rem;">Chart 4 - Top 10 Publishers by Global Sales</h2>
-    <div id="chart4" class="chart"></div>
+    <hr class="hr">
 
-    <p style="color:#cfcfcf;max-width:70ch;line-height:1.6;">
-        Horizontal bars make it easy to compare publisher totals. Aggregating Global_Sales
-        and showing only the top 10 highlights who dominates the market overall.
+    <!-- ===================== Visual #4 ===================== -->
+
+    <h2>Chart D - Japanese Sales Trends by <em>Genre</em> (2000–2020)</h2>
+    <div id="chartD" class="chart"></div>
+    <p>
+        This line chart highlights Japan’s strong preference for Nintendo titles, especially in the Action and
+        Role-Playing genres.
+        The chart shows a consistent dominance of handheld systems (DS, 3DS, Switch) from 2005 onwards, compared to
+        declining sales on
+        Western consoles such as Xbox.
     </p>
-
-    <!-- Chart 5 -->
-    <h2 style="color:#fff; margin:2rem 0 .6rem">Chart 5 - Regional Sales Intensity by Year</h2>
-    <div id="chart5" class="chart"></div>
-    <p style="color:#cfcfcf; max-width:70ch">
-        A heatmap shows where sales were strongest over time across regions. Darker cells indicate higher total sales
-        (sum of <em>sales_amount</em>) in that year/region.
-    </p>
-
-    <!-- Chart 6 -->
-    <h2 style="color:#fff; margin:2rem 0 .6rem">
-        Chart 6 - NA vs EU Sales (size = Global Sales)
-    </h2>
-    <div id="chart6" class="chart"></div>
-    <p style="color:#cfcfcf; max-width:70ch">
-        Each dot is a game (2000–2020). The x-axis shows sales in North America, the y-axis shows sales in Europe.
-        Dot size encodes global sales, and color indicates genre. Look for clusters and outliers to see which genres
-        and titles perform strongly in both regions.
-    </p>
-
 
 </body>
 

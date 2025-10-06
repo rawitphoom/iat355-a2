@@ -4,6 +4,131 @@
 
 const W = 900;   // reuse this
 
+// CHART A: Global sales by Genre & Platform (stacked bars)
+const genrePlatform = {
+    $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+    description: "Global sales by genre and platform (stacked).",
+    width: 900,
+    height: 380,
+    data: { url: "dataset/videogames_wide.csv" },
+    transform: [
+        // (optional) focus on common platforms to keep it readable
+        { filter: "indexof(['PS2','PS3','PS4','X360','Wii','DS','3DS','PC','XB','Switch'], datum.Platform) >= 0" }
+    ],
+    mark: { type: "bar" },
+    encoding: {
+        x: { field: "Genre", type: "nominal", title: "Genre" },
+        y: { aggregate: "sum", field: "Global_Sales", type: "quantitative", title: "Global Sales (millions)" },
+        color: { field: "Platform", type: "nominal", title: "Platform" },
+        tooltip: [
+            { field: "Genre" }, { field: "Platform" },
+            { aggregate: "sum", field: "Global_Sales", title: "Global (M)" }
+        ]
+    },
+    config: { view: { stroke: null } }
+};
+vegaEmbed("#chartA", genrePlatform, { actions: false });
+
+
+// CHART B: Sales over time by Platform & Genre (faceted lines)
+const timeByPlatGenre = {
+    $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+    description: "Sales trends over time by platform and genre.",
+    data: { url: "dataset/videogames_wide.csv" },
+    transform: [
+        { filter: "isValid(datum.Year) && datum.Year >= 2000 && datum.Year <= 2016" },
+        { filter: "indexof(['PS2','PS3','PS4','X360','Wii','DS','3DS','PC','XB','Switch'], datum.Platform) >= 0" }
+    ],
+    facet: { field: "Genre", type: "nominal", columns: 3 },
+    spec: {
+        width: 260, height: 160,
+        mark: { type: "line", interpolate: "monotone" },
+        encoding: {
+            x: { field: "Year", type: "ordinal", title: "Year" },
+            y: {
+                aggregate: "sum", field: "Global_Sales", type: "quantitative",
+                title: "Sales (M)"
+            },
+            color: { field: "Platform", type: "nominal" },
+            tooltip: [
+                { field: "Genre" }, { field: "Platform" }, { field: "Year" },
+                { aggregate: "sum", field: "Global_Sales", title: "Sales (M)" }
+            ]
+        }
+    },
+    resolve: { scale: { y: "independent" } },
+    config: { view: { stroke: null } }
+};
+vegaEmbed("#chartB", timeByPlatGenre, { actions: false });
+
+// CHART C: Regional sales vs Platform (grouped bars)
+const regionPlatform = {
+    $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+    description: "Compare regions by platform using wide->long fold.",
+    width: 900,
+    height: 380,
+    data: { url: "dataset/videogames_wide.csv" },
+    transform: [
+        // keep common platforms so labels don't explode
+        { filter: "indexof(['PS2','PS3','PS4','X360','Wii','DS','3DS','PC','XB','Switch'], datum.Platform) >= 0" },
+        // convert wide regional columns to long
+        {
+            fold: ["NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales"],
+            as: ["Region", "Sales"]
+        }
+    ],
+    mark: "bar",
+    encoding: {
+        x: { field: "Platform", type: "nominal", title: "Platform" },
+        y: { aggregate: "sum", field: "Sales", type: "quantitative", title: "Sales (millions)" },
+        color: {
+            field: "Region", type: "nominal",
+            scale: {
+                domain: ["NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales"],
+                range: ["#4e79a7", "#f28e2c", "#e15759", "#76b7b2"]
+            },
+            title: "Region"
+        },
+        tooltip: [
+            { field: "Platform" }, { field: "Region" },
+            { aggregate: "sum", field: "Sales", title: "Sales (M)" }
+        ],
+        column: { field: "Genre", type: "nominal", title: null, spacing: 10 }
+    },
+    config: {
+        view: { stroke: null },
+        facet: { columns: 1 }   // one big chart (remove this line to facet by Genre)
+    }
+};
+vegaEmbed("#chartC", regionPlatform, { actions: false });
+
+
+// Chart D — Focus Story: Sales in Japan by Genre over Time
+const chartD = {
+    $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+    description: "Japanese sales trends by genre (2000–2020)",
+    width: 800,
+    height: 400,
+    data: { url: "dataset/videogames_long.csv" },
+    transform: [
+        { filter: "datum.year >= 2000 && datum.year <= 2020" },
+        { filter: "datum.sales_region == 'jp_sales'" }
+    ],
+    mark: { type: "line", point: true },
+    encoding: {
+        x: { field: "year", type: "ordinal", title: "Year" },
+        y: { aggregate: "sum", field: "sales_amount", type: "quantitative", title: "Sales (millions)" },
+        color: { field: "genre", type: "nominal", title: "Genre", scale: { scheme: "tableau10" } },
+        tooltip: [
+            { field: "year" },
+            { field: "genre" },
+            { aggregate: "sum", field: "sales_amount", title: "Sales (M)" }
+        ]
+    }
+};
+vegaEmbed("#chartD", chartD, { actions: false });
+
+
 // ---------- Chart 1: tiny inline example ----------
 const chart1 = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
