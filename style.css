@@ -30,7 +30,8 @@ body {
     inset: 0 0 auto 0;
     display: flex;
     justify-content: space-between;
-    padding: 3vw 1.5vw 1.5vw 1.5vw;
+    /* padding: 3vw 1.5vw 1.5vw 1.5vw; */
+    margin: 3vw 1.5vw 1.5vw 1.5vw;
     z-index: 10;
 }
 
